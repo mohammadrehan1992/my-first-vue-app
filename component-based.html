@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- Two way model -->
+        <p>{{ message }}</p>
+        <input type="text" v-model="message" />
+
+
+        <!-- component interaction -->
+
+        <app-header title="This is footer"></app-header>
+        <app-content></app-content>
+        <app-footer></app-footer>
+
+
+
+    </div>
+
+
+
+
+    <script>
+
+
+        Vue.component('app-header', {
+            props: ['title'],
+            template: '<div> <h1>{{title}}</h1></div>'
+        })
+
+        Vue.component('app-footer', {
+            props: ['title','list'],
+            template: '<div>This is footer</div>'
+        })
+
+        Vue.component('app-content', {
+            template: '<div>This is content</div>'
+        })
+
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: "hello world",
+            },
+            methods: {
+
+            },
+
+        })
+
+    </script>
+</body>
+
+</html>

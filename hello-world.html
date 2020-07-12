@@ -7,12 +7,30 @@
 <body>
   <div id="app">
 
-    {{ message }}
+    <h1>{{ message }}</h1>
+
+    <p>Image : <img v-bind:src="profilePic" width="300" ></p>
+
     <p>Name : {{ name }}</p>
     <p>Age :  {{ age }}</p>
-    <p>Is Old : {{ IsOld }}</p>
+    <p v-if="age > 25">He is Senior</p>
+    <p v-if="age <= 25 && age >=20">He is Mid level</p>
+    <p v-if="age < 20 && age >= 15">He is Junior</p>
+    <p v-else>He is Fresh</p>
+
+    <ul v-for="item in todos">
+        <li>{{ item.text }}</li>
+    </ul>
+
+    <button v-on:click="reverseMessage">Click me</button>
+
+    <button v-on:click="add(2,3)">Add </button>
+    <h3>Result : {{ addResult }}</h3>
     
 </div>
+
+
+
 
   <script>
     
@@ -21,9 +39,28 @@
       data: {
         message: 'Hello Vue!',
         name: 'Rehan',
-        age: '27',
-        IsOld : true
-      }
+        age: '0',
+        profilePic : "image.jpg",
+        
+        todos: [
+            { text: 'Learn JavaScript' },
+            { text: 'Learn Vue' },
+            { text: 'Build something awesome' }
+        ],
+        addResult : 0,
+      },
+      methods : {
+            reverseMessage : function(){
+                this.message = this.message.split(' ').reverse().join(' ')
+            },
+            add : function(a,b){
+                this.addResult = a + b;
+            }
+
+        }
+
+
+
     })
 
   </script>
